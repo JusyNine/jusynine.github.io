@@ -30,6 +30,69 @@
 <!-- inject:script -->
 <script src="<%- url_for('js/script.js') %>"></script>
 <!-- endinject -->
+<script>
+    (function () {
+        var words = []
+        var timers = []
+        var typingSpeed = 95
+        var deletingSpeed = 55
+        var holdTime = 1200
+
+        function parseWords(node) {
+            try {
+                return JSON.parse(node.getAttribute('data-typing-words') || '[]').filter(Boolean)
+            } catch (error) {
+                return []
+            }
+        }
+
+        function typeLoop(node, wordIndex, charIndex, deleting) {
+            if (!words.length) return
+
+            var word = words[wordIndex]
+            node.textContent = word.slice(0, charIndex)
+
+            if (!deleting && charIndex < word.length) {
+                timers.push(setTimeout(function () {
+                    typeLoop(node, wordIndex, charIndex + 1, false)
+                }, typingSpeed))
+                return
+            }
+
+            if (!deleting) {
+                timers.push(setTimeout(function () {
+                    typeLoop(node, wordIndex, charIndex, true)
+                }, holdTime))
+                return
+            }
+
+            if (charIndex > 0) {
+                timers.push(setTimeout(function () {
+                    typeLoop(node, wordIndex, charIndex - 1, true)
+                }, deletingSpeed))
+                return
+            }
+
+            timers.push(setTimeout(function () {
+                typeLoop(node, (wordIndex + 1) % words.length, 0, false)
+            }, 240))
+        }
+
+        window.addEventListener('load', function () {
+            var nodes = Array.prototype.slice.call(document.querySelectorAll('.cube-typed-title[data-typing-words]'))
+            if (!nodes.length) return
+
+            words = parseWords(nodes[0])
+            if (words.length < 2) return
+
+            timers.forEach(clearTimeout)
+            nodes.forEach(function (node) {
+                node.textContent = ''
+                typeLoop(node, 0, 0, false)
+            })
+        })
+    })()
+</script>
 <div class="cube-loading out"></div>
 </body>
 </html>

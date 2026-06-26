@@ -5,7 +5,7 @@ header:
   background: sky.png
   # both pc and mobile required title(make it the same as your hexo site _config.yml's title)
   title: jusynine
-  subtitle: RE & Android
+  subtitle: RE&Android
 
 
 # background display for pc

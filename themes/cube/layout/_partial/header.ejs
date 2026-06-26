@@ -5,11 +5,8 @@
     <img src="<%- mobileBackgroundUrl %>" alt="header background">
     <% if (theme.header.title) { %>
     <div class="cube-type">
-        <span class="cube-typed-title"><%= theme.header.title %></span>
+        <span class="cube-typed-title" data-typing-words="<%- JSON.stringify([theme.header.title, theme.header.subtitle || '']).replace(/"/g, '&quot;') %>"><%= theme.header.title %></span>
         <span class="cube-typed-cursor">|</span>
-        <% if (theme.header.subtitle) { %>
-        <span class="cube-header-subtitle"><%= theme.header.subtitle %></span>
-        <% } %>
     </div>
     <% } %>
 </header>
@@ -59,11 +56,8 @@
     <header class="cube-background cube-header-background">
         <% if (theme.header.title) { %>
         <div class="cube-type">
-            <span class="cube-typed-title"><%= theme.header.title %></span>
+            <span class="cube-typed-title" data-typing-words="<%- JSON.stringify([theme.header.title, theme.header.subtitle || '']).replace(/"/g, '&quot;') %>"><%= theme.header.title %></span>
             <span class="cube-typed-cursor">|</span>
-            <% if (theme.header.subtitle) { %>
-            <span class="cube-header-subtitle"><%= theme.header.subtitle %></span>
-            <% } %>
         </div>
         <% } %>
     </header>
