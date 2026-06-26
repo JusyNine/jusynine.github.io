@@ -1,5 +1,8 @@
 <header class="cube-header" id="cube-header">
-    <img src="<% if(theme.header.background) { %> <%= theme.header.background %> <% } else { %> <%- url_for('images/background.png') %> <% } %>" alt="头部背景图片">
+    <% let mobileBackground = theme.header.background
+    let mobileBackgroundIsUrl = /^(https?:)?\/\//.test(mobileBackground || '')
+    let mobileBackgroundUrl = mobileBackground ? (mobileBackgroundIsUrl || mobileBackground.charAt(0) === '/' ? mobileBackground : url_for(`images/${mobileBackground}`)) : url_for('images/background.png') %>
+    <img src="<%- mobileBackgroundUrl %>" alt="header background">
     <% if (theme.header.title) { %>
     <div class="cube-type">
         <span class="cube-typed-title"><%= theme.header.title %></span>
@@ -14,7 +17,7 @@
     let blur = theme.blur ? +theme.blur : 0
 
     if (theme.full === true) { %>
-    <!-- TODO 增加全局背景图的样式 -->
+    <!-- TODO add global background style -->
     <style>
         header.cube-background.cube-full-background {
             background-image: url('<%= isUrl ? theme.background : prefix + theme.background %>')

@@ -63,6 +63,86 @@
 
             }
         }
+
+        <% if (theme.opening_animation !== false) {
+            let openingBackground = theme.background || (theme.header && theme.header.background)
+            let openingIsUrl = /^(https?:)?\/\//.test(openingBackground || '')
+            let openingUrl = openingBackground ? (openingIsUrl || openingBackground.charAt(0) === '/' ? openingBackground : url_for(`images/${openingBackground}`)) : ''
+        %>
+        .site-opening {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            pointer-events: none;
+            background-color: #111;
+            animation: site-opening-exit 1s cubic-bezier(.76, 0, .24, 1) 1.45s forwards;
+        }
+
+        .site-opening::before {
+            content: '';
+            position: absolute;
+            inset: -2%;
+            background-image: linear-gradient(rgba(0, 0, 0, .28), rgba(0, 0, 0, .38))<% if (openingUrl) { %>, url('<%- openingUrl %>')<% } %>;
+            background-position: center;
+            background-size: cover;
+            transform: scale(1.08);
+            animation: site-opening-zoom 2.1s ease forwards;
+        }
+
+        .site-opening-title {
+            position: relative;
+            color: #fff;
+            font-size: 36px;
+            line-height: 1.25;
+            text-align: center;
+            text-shadow: 0 2px 14px rgba(0, 0, 0, .45);
+            animation: site-opening-title 1.2s ease forwards;
+        }
+
+        @keyframes site-opening-zoom {
+            from { transform: scale(1.12); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes site-opening-title {
+            0% {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            35%, 75% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-12px);
+            }
+        }
+
+        @keyframes site-opening-exit {
+            to {
+                clip-path: inset(0 0 100% 0);
+                visibility: hidden;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .site-opening-title {
+                font-size: 26px;
+                max-width: 86%;
+            }
+        }
+
+        @media(prefers-reduced-motion: reduce) {
+            .site-opening {
+                display: none;
+            }
+        }
+        <% } %>
     </style>
     <% if (theme.analytics.baidu) { %>
     <%- partial('analytics/baidu') %>

@@ -12,6 +12,8 @@ header:
 # `background: background.png` refers to the path "source/images/background.png"
 background: http://cube-1252774894.cosgz.myqcloud.com/background.png
 
+opening_animation: true
+
 
 # the background image width and height (you can see your image file to get them)
 width: 2000

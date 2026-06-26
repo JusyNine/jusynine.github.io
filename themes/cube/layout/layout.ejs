@@ -1,5 +1,10 @@
 <%- partial('_partial/head') %>
 <body>
+<% if (theme.opening_animation !== false) { %>
+<div class="site-opening" aria-hidden="true">
+    <div class="site-opening-title"><%= theme.header && theme.header.title ? theme.header.title : config.title %></div>
+</div>
+<% } %>
 <div class="cube-body">
     <%- partial('_partial/menu') %>
     <%- partial('_partial/header') %>
