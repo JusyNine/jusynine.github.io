@@ -64,6 +64,61 @@
             }
         }
 
+        .cube-type .cube-header-subtitle {
+            display: block;
+            margin-top: 12px;
+            color: rgba(255, 255, 255, .9);
+            font-size: 24px;
+            line-height: 1.35;
+            letter-spacing: 0;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, .35);
+        }
+
+        .cube-home-intro {
+            margin-bottom: 20px;
+            padding: 34px 28px;
+            background: #fff;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            border-radius: 5px;
+        }
+
+        .cube-home-intro p {
+            margin: 0;
+            color: #555;
+            font-size: 22px;
+            line-height: 1.65;
+            text-align: center;
+        }
+
+        @media(min-width: 768px) {
+            .cube-content.no-sidebar {
+                justify-content: center;
+            }
+
+            .cube-content.no-sidebar .cube-left {
+                flex-basis: 78%;
+                max-width: 860px;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .cube-type .cube-header-subtitle {
+                margin-top: 8px;
+                font-size: 17px;
+            }
+
+            .cube-home-intro {
+                margin: 0;
+                padding: 26px 20px;
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .cube-home-intro p {
+                font-size: 18px;
+            }
+        }
+
         <% if (theme.opening_animation !== false) {
             let openingBackground = theme.background || (theme.header && theme.header.background)
             let openingIsUrl = /^(https?:)?\/\//.test(openingBackground || '')
@@ -105,14 +160,25 @@
             background: linear-gradient(to bottom, rgba(0, 0, 0, .32), rgba(0, 0, 0, 0));
         }
 
-        .site-opening-title {
+        .site-opening-copy {
             position: relative;
+            text-align: center;
+            animation: site-opening-title 1.2s ease forwards;
+        }
+
+        .site-opening-title {
             color: #fff;
             font-size: 36px;
             line-height: 1.25;
-            text-align: center;
             text-shadow: 0 2px 14px rgba(0, 0, 0, .45);
-            animation: site-opening-title 1.2s ease forwards;
+        }
+
+        .site-opening-subtitle {
+            margin-top: 12px;
+            color: rgba(255, 255, 255, .86);
+            font-size: 20px;
+            line-height: 1.35;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, .45);
         }
 
         @keyframes site-opening-zoom {
@@ -149,6 +215,10 @@
             .site-opening-title {
                 font-size: 26px;
                 max-width: 86%;
+            }
+
+            .site-opening-subtitle {
+                font-size: 16px;
             }
         }
 

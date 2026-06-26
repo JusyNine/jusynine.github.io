@@ -2,19 +2,26 @@
 <body>
 <% if (theme.opening_animation !== false) { %>
 <div class="site-opening" aria-hidden="true">
-    <div class="site-opening-title"><%= theme.header && theme.header.title ? theme.header.title : config.title %></div>
+    <div class="site-opening-copy">
+        <div class="site-opening-title"><%= theme.header && theme.header.title ? theme.header.title : config.title %></div>
+        <% if (theme.header && theme.header.subtitle) { %>
+        <div class="site-opening-subtitle"><%= theme.header.subtitle %></div>
+        <% } %>
+    </div>
 </div>
 <% } %>
 <div class="cube-body">
     <%- partial('_partial/menu') %>
     <%- partial('_partial/header') %>
-    <div class="cube-content">
+    <div class="cube-content<%= theme.widgets && theme.widgets.length ? '' : ' no-sidebar' %>">
         <div class="cube-left">
             <%- body %>
         </div>
+        <% if (theme.widgets && theme.widgets.length) { %>
         <div class="cube-right">
             <%- partial('_partial/sidebar') %>
         </div>
+        <% } %>
     </div>
 </div>
 <footer class="cube-footer">

@@ -4,7 +4,8 @@ theme: cube
 header:
   background: http://cube-1252774894.cosgz.myqcloud.com/background.png
   # both pc and mobile required title(make it the same as your hexo site _config.yml's title)
-  title: senrenbankaの部落格
+  title: jusynine
+  subtitle: RE & Android
 
 
 # background display for pc
@@ -85,15 +86,7 @@ sidebar:
 # only path, refer to source/images
 friend_links: friend_links.jpg
 
-widgets:
-- search
-- author
-- music
-- recent_posts
-- categories
-- tagcloud
-- links
-- friend_links
+widgets: []
 
 # when you want to use the search, firstly make the `search: true`,
 # then you should install hexo-generator-json-content
